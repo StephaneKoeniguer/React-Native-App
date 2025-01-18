@@ -4,9 +4,11 @@ import { s } from './index.style';
 import { Header } from '@/components/Header/Header';
 import { Card } from "@/components/Card/Card";
 import { useState } from "react";
+import {TabBottomMenu} from "@/components/TabBottomMenu/TabBottomMenu";
 
 export default function Index() {
 
+    const [selectedTabName, setSelectedTabName] = useState("all");
     const [todoList, setTodoList] = useState([
         { id: 1, title: 'Faire la café', isCompleted: false },
         { id: 2, title: 'Dormir', isCompleted: true },
@@ -18,6 +20,22 @@ export default function Index() {
         { id: 8, title: 'Lire', isCompleted: true },
         { id: 9, title: 'manger', isCompleted: true },
     ]);
+
+    /**
+     * Create todoList filtered
+     */
+    function getFilteredList() {
+        switch (selectedTabName) {
+            case "all":
+                return todoList;
+            case "inProgress":
+                return todoList.filter(todo => !todo.isCompleted);
+            case "done":
+                return todoList.filter(todo => todo.isCompleted);
+            default:
+                return todoList;
+        }
+    }
 
     /**
      * Update TODO
@@ -42,7 +60,7 @@ export default function Index() {
      * Render la liste des todos
      */
     function renderTodoList() {
-        return todoList.map((todo)=>
+        return getFilteredList().map((todo)=>
             <View style={s.carItem} key={todo.id}>
                 <Card onPress={updateTodo} todo={todo}/>
             </View>
@@ -63,7 +81,11 @@ export default function Index() {
             </SafeAreaView>
         </SafeAreaProvider>
         <View style={s.footer}>
-            <Text>Footer</Text>
+            <TabBottomMenu
+                todoList={todoList}
+                onPress={setSelectedTabName}
+                selectedTabName={selectedTabName}
+            />
         </View>
       </>
   );

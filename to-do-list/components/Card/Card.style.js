@@ -3,7 +3,6 @@ import { StyleSheet} from "react-native";
 export const s = StyleSheet.create({
     card: {
         backgroundColor: 'white',
-        display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
