@@ -5,21 +5,15 @@ import { Header } from '@/components/Header/Header';
 import { Card } from "@/components/Card/Card";
 import { useState } from "react";
 import {TabBottomMenu} from "@/components/TabBottomMenu/TabBottomMenu";
+import {ButtonAdd} from "@/components/ButtonAdd/ButtonAdd";
+import Dialog from "react-native-dialog";
 
 export default function Index() {
 
     const [selectedTabName, setSelectedTabName] = useState("all");
-    const [todoList, setTodoList] = useState([
-        { id: 1, title: 'Faire la café', isCompleted: false },
-        { id: 2, title: 'Dormir', isCompleted: true },
-        { id: 3, title: 'Travailler', isCompleted: false },
-        { id: 4, title: 'Faire la café', isCompleted: false },
-        { id: 5, title: 'sortir le chien', isCompleted: true },
-        { id: 6, title: 'Tennis', isCompleted: false },
-        { id: 7, title: 'jeux videos', isCompleted: false },
-        { id: 8, title: 'Lire', isCompleted: true },
-        { id: 9, title: 'manger', isCompleted: true },
-    ]);
+    const [todoList, setTodoList] = useState([]);
+    const [isAddDialogVisible, setIsAddDialogVisible] = useState(false);
+    const [inputValue, setInputValue] = useState();
 
     /**
      * Create todoList filtered
@@ -36,6 +30,34 @@ export default function Index() {
                 return todoList;
         }
     }
+
+    /**
+     * Display dialog for add a new task
+     */
+    function showAddDialog() {
+        setIsAddDialogVisible(true);
+    }
+
+    /**
+     * Generate a unique id for the task
+     */
+    function generateId() {
+        return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    }
+
+    /**
+     * Add a new task
+     */
+    function addTodo() {
+        const newTodo = {
+            id: generateId(),
+            title: inputValue,
+            isCompleted: false
+        };
+        setTodoList([...todoList, newTodo]);
+        setIsAddDialogVisible(false);
+    }
+
 
     /**
      * Update TODO
@@ -57,7 +79,7 @@ export default function Index() {
     }
 
     /**
-     * Detelete a todo
+     * Delete a todo
      * @param todoToDelete
      */
     function deleteTodo(todoToDelete) {
@@ -89,7 +111,8 @@ export default function Index() {
     }
 
 
-  return (
+  // @ts-ignore
+    return (
       <>
         <SafeAreaProvider>
             <SafeAreaView style={s.container}>
@@ -99,6 +122,7 @@ export default function Index() {
                 <View style={s.main}>
                     <ScrollView>{renderTodoList()}</ScrollView>
                 </View>
+                <ButtonAdd onPress={showAddDialog}/>
             </SafeAreaView>
         </SafeAreaProvider>
         <View style={s.footer}>
@@ -108,6 +132,15 @@ export default function Index() {
                 selectedTabName={selectedTabName}
             />
         </View>
+          <Dialog.Container visible={isAddDialogVisible} onBackdropPress={()=> setIsAddDialogVisible(false)}>
+              <Dialog.Title>Ajouter une tâche</Dialog.Title>
+              <Dialog.Description>Choisir le nom de la tâche</Dialog.Description>
+              <Dialog.Input onChangeText={setInputValue}/>
+              <Dialog.Button
+                  disabled={!inputValue?.trim()}
+                  label="Ajouter"
+                  onPress={addTodo} />
+          </Dialog.Container>
       </>
   );
 }
