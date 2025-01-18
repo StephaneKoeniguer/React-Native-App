@@ -3,10 +3,15 @@ import {View, ScrollView, Alert } from "react-native";
 import { s } from './index.style';
 import { Header } from '@/components/Header/Header';
 import { Card } from "@/components/Card/Card";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {TabBottomMenu} from "@/components/TabBottomMenu/TabBottomMenu";
 import {ButtonAdd} from "@/components/ButtonAdd/ButtonAdd";
 import Dialog from "react-native-dialog";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
+let isFirstRender = true;
+let isLoadUpdate = false;
 
 export default function Index() {
 
@@ -14,6 +19,57 @@ export default function Index() {
     const [todoList, setTodoList] = useState([]);
     const [isAddDialogVisible, setIsAddDialogVisible] = useState(false);
     const [inputValue, setInputValue] = useState();
+
+    /**
+     * Fist load of app
+     */
+    useEffect(() => {
+        loadTodoList()
+    }, []);
+
+    /**
+     * Create, update and delete a task
+     */
+    useEffect(() => {
+        if (isLoadUpdate) {
+            isLoadUpdate = false;
+        } else {
+            if (!isFirstRender) {
+                saveTodoList()
+            } else {
+                isFirstRender = false;
+            }
+        }
+    }, [todoList])
+
+    /**
+     * Save todoList in the local storage
+     */
+    async function saveTodoList() {
+        try {
+            console.log("Save")
+            await AsyncStorage.setItem("@todoList", JSON.stringify(todoList));
+        } catch (error) {
+            alert("Erreur: " + error);
+        }
+    }
+
+    /**
+     * Load todoList from local storage
+     */
+    async function loadTodoList() {
+        try {
+            console.log("load")
+            const stringifiedTodoList = await AsyncStorage.getItem("@todoList");
+            if (stringifiedTodoList !== null) {
+                const parseTodoList = JSON.parse(stringifiedTodoList);
+                isLoadUpdate = true;
+                setTodoList(parseTodoList);
+            }
+        } catch (error) {
+            alert("Erreur: " + error);
+        }
+    }
 
     /**
      * Create todoList filtered
@@ -39,7 +95,7 @@ export default function Index() {
     }
 
     /**
-     * Generate a unique id for the task
+     * Generate an uniq id for the task
      */
     function generateId() {
         return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
