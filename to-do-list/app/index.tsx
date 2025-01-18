@@ -79,8 +79,10 @@ export default function Index() {
             case "all":
                 return todoList;
             case "inProgress":
+                // @ts-ignore
                 return todoList.filter(todo => !todo.isCompleted);
             case "done":
+                // @ts-ignore
                 return todoList.filter(todo => todo.isCompleted);
             default:
                 return todoList;
@@ -110,6 +112,7 @@ export default function Index() {
             title: inputValue,
             isCompleted: false
         };
+        // @ts-ignore
         setTodoList([...todoList, newTodo]);
         setIsAddDialogVisible(false);
     }
@@ -119,17 +122,20 @@ export default function Index() {
      * Update TODO
      * @param todo
      */
+    // @ts-ignore
     function updateTodo(todo) {
         const updatedTodo = {
             ...todo,
             isCompleted: !todo.isCompleted
         }
         const indexToUpdate = todoList.findIndex(
+            // @ts-ignore
             (todo) => todo.id === updatedTodo.id
         );
 
         // Obliger de passer par le setter à cause du useState
         const updateTodoList = [...todoList];
+        // @ts-ignore
         updateTodoList[indexToUpdate] = updatedTodo;
         setTodoList(updateTodoList);
     }
@@ -138,12 +144,14 @@ export default function Index() {
      * Delete a todo
      * @param todoToDelete
      */
+    // @ts-ignore
     function deleteTodo(todoToDelete) {
         Alert.alert("Suppression", "Supprimer cette tâche ?", [
             {
                 text:"Supprimer",
                 style: "destructive",
                 onPress: () => {
+                    // @ts-ignore
                     setTodoList(todoList.filter(todo => todo.id !== todoToDelete.id))
                 }
 
@@ -159,15 +167,15 @@ export default function Index() {
      * Render la liste des todos
      */
     function renderTodoList() {
+        // @ts-ignore
         return getFilteredList().map((todo)=>
+            // @ts-ignore
             <View style={s.carItem} key={todo.id}>
                 <Card onLongPress={deleteTodo} onPress={updateTodo} todo={todo}/>
             </View>
         )
     }
 
-
-  // @ts-ignore
     return (
       <>
         <SafeAreaProvider>
@@ -188,14 +196,22 @@ export default function Index() {
                 selectedTabName={selectedTabName}
             />
         </View>
-          <Dialog.Container visible={isAddDialogVisible} onBackdropPress={()=> setIsAddDialogVisible(false)}>
+          <Dialog.Container
+              visible={isAddDialogVisible}
+              onBackdropPress={()=> setIsAddDialogVisible(false)}
+          >
               <Dialog.Title>Ajouter une tâche</Dialog.Title>
               <Dialog.Description>Choisir le nom de la tâche</Dialog.Description>
-              <Dialog.Input onChangeText={setInputValue}/>
+              <Dialog.Input
+                  // @ts-ignore
+                  onChangeText={setInputValue}
+              />
               <Dialog.Button
+                  // @ts-ignore
                   disabled={!inputValue?.trim()}
                   label="Ajouter"
-                  onPress={addTodo} />
+                  onPress={addTodo}
+              />
           </Dialog.Container>
       </>
   );
