@@ -1,5 +1,5 @@
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import {View, Text, ScrollView } from "react-native";
+import {View, ScrollView, Alert } from "react-native";
 import { s } from './index.style';
 import { Header } from '@/components/Header/Header';
 import { Card } from "@/components/Card/Card";
@@ -57,12 +57,33 @@ export default function Index() {
     }
 
     /**
+     * Detelete a todo
+     * @param todoToDelete
+     */
+    function deleteTodo(todoToDelete) {
+        Alert.alert("Suppression", "Supprimer cette tâche ?", [
+            {
+                text:"Supprimer",
+                style: "destructive",
+                onPress: () => {
+                    setTodoList(todoList.filter(todo => todo.id !== todoToDelete.id))
+                }
+
+            },
+            {
+                text:"Annuler",
+                style: "cancel",
+            }
+        ])
+    }
+
+    /**
      * Render la liste des todos
      */
     function renderTodoList() {
         return getFilteredList().map((todo)=>
             <View style={s.carItem} key={todo.id}>
-                <Card onPress={updateTodo} todo={todo}/>
+                <Card onLongPress={deleteTodo} onPress={updateTodo} todo={todo}/>
             </View>
         )
     }
