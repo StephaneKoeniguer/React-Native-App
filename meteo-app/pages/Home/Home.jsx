@@ -2,14 +2,22 @@ import { s } from './Home.style';
 import {View} from "react-native";
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync} from 'expo-location';
 import {useEffect, useState} from "react";
+import {MeteoAPI} from "@/api/meteo";
 
 export function Home() {
 
     const [coords, setCoords] = useState();
+    const [weather, setWeather] = useState();
 
     useEffect(() => {
         getUserCoords();
     }, []);
+
+    useEffect(() => {
+        if (coords) {
+            fetchWeather(coords);
+        }
+    }, [coords]);
 
     /**
      * Permet de demander à l'utilisateur les coordonnées gps
@@ -26,6 +34,17 @@ export function Home() {
        }
     }
 
+    /**
+     * Permet de récupérer la météo
+     * @param coordinates
+     * @returns {Promise<void>}
+     */
+    async function fetchWeather(coordinates) {
+        // Appel classe meteo.js
+        const weatherResponse = await MeteoAPI.fetchWeatherFromCoords(coordinates);
+        setWeather(weatherResponse);
+
+    }
 
     return <>
         <View style={s.meteo_basic}></View>
