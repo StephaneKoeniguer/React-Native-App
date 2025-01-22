@@ -1,7 +1,7 @@
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { s } from './index.style';
 import { Home } from "@/pages/Home/Home";
-import {ImageBackground, Text} from "react-native";
+import {ImageBackground} from "react-native";
 // @ts-ignore
 import backgroundImg from "@/assets/images/background.png";
 // @ts-ignore

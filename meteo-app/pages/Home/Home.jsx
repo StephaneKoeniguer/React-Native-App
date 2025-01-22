@@ -1,9 +1,9 @@
 import { s } from './Home.style';
 import {Text, View} from "react-native";
-import { requestForegroundPermissionsAsync, getCurrentPositionAsync} from 'expo-location';
+import {requestForegroundPermissionsAsync, getCurrentPositionAsync} from 'expo-location';
 import {useEffect, useState} from "react";
 import {MeteoAPI} from "@/api/meteo";
-import {Txt} from "@/components/Txt/Txt";
+import {MeteoBasic} from "@/components/MeteoBasic/MeteoBasic";
 
 export function Home() {
 
@@ -50,7 +50,7 @@ export function Home() {
     return (
         <>
             <View style={s.meteo_basic} >
-                <Txt>Hello</Txt>
+                <MeteoBasic />
             </View>
             <View style={s.searchbar} >
 
