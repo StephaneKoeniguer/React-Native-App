@@ -1,7 +1,5 @@
 import { Home } from "@/pages/Home/Home";
 // @ts-ignore
-import backgroundImg from "@/assets/images/background.png";
-// @ts-ignore
 import AlataRegular from '@/assets/fonts/Alata-Regular.ttf'
 import { useFonts } from 'expo-font';
 import {NavigationContainer, NavigationIndependentTree} from "@react-navigation/native";
@@ -13,7 +11,7 @@ const Stack = createNativeStackNavigator();
 
 export default function Index() {
 
-    // Chargement de la font
+    // Chargement de la police
     const [isFontLoaded] = useFonts({
         "Alata-Regular": AlataRegular
     });

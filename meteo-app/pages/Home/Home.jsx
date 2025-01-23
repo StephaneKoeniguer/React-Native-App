@@ -66,6 +66,9 @@ export function Home() {
         setCity(cityResponse);
     }
 
+    /**
+     * Permet de récupérer de naviger et d'envoyer les données à la page
+     */
     function gotoForecastPage() {
         nav.navigate('Forecast',{city, ...weather.daily});
     }
