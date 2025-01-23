@@ -1,17 +1,20 @@
 import { s } from './Home.style';
-import {Text, View} from "react-native";
+import {View} from "react-native";
 import {requestForegroundPermissionsAsync, getCurrentPositionAsync} from 'expo-location';
 import {useEffect, useState} from "react";
 import {MeteoAPI} from "@/api/meteo";
 import {MeteoBasic} from "@/components/MeteoBasic/MeteoBasic";
 import {getWeatherInterpretation} from "@/services/meteo-service";
 import {MeteoAdvanced} from "@/components/MeteoAdvanced/MeteoAdvanced";
+import {useNavigation} from "@react-navigation/native";
+import {Container} from "@/components/Container/Container";
 
 export function Home() {
 
     const [coords, setCoords] = useState();
     const [weather, setWeather] = useState();
     const [city, setCity] = useState();
+    const nav = useNavigation();
     const currentWeather = weather ?.current_weather;
 
     useEffect(() => {
@@ -63,15 +66,18 @@ export function Home() {
         setCity(cityResponse);
     }
 
-
+    function gotoForecastPage() {
+        nav.navigate('Forecast',{city, ...weather.daily});
+    }
 
     return currentWeather ? (
-        <>
+        <Container>
             <View style={s.meteo_basic} >
                 <MeteoBasic
                     temperature = {Math.round(currentWeather?.temperature)}
                     city = {city}
                     interpretation = {getWeatherInterpretation(currentWeather.weathercode)}
+                    onPress={gotoForecastPage}
                 />
             </View>
             <View style={s.searchbar} >
@@ -84,6 +90,6 @@ export function Home() {
                     wind= {currentWeather.windspeed}
                 />
             </View>
-        </>
+        </Container>
     ) : null;
 }

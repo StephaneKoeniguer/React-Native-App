@@ -1,7 +1,4 @@
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { s } from './index.style';
 import { Home } from "@/pages/Home/Home";
-import {ImageBackground} from "react-native";
 // @ts-ignore
 import backgroundImg from "@/assets/images/background.png";
 // @ts-ignore
@@ -24,30 +21,21 @@ export default function Index() {
   return (
       <NavigationIndependentTree>
         <NavigationContainer >
-              <ImageBackground
-                  source={backgroundImg}
-                  style={s.img_background}
-                  imageStyle={s.img} // style sur l'image directement
+          {isFontLoaded ? (
+              <Stack.Navigator
+                  initialRouteName="Home"
+                  screenOptions={{
+                      headerShown: false, // Supprime l'en-tête par défaut
+                      animation: 'fade',
+                      contentStyle: {
+                          backgroundColor: 'transparent', // Supprime le fond par défault
+                      },
+                  }}
               >
-                  <SafeAreaProvider>
-                      <SafeAreaView style={s.container}>
-                          {isFontLoaded ? (
-                              <Stack.Navigator
-                                  initialRouteName="Home"
-                                  screenOptions={{
-                                      headerShown: false, // Supprime l'en-tête par défaut
-                                      contentStyle: {
-                                          backgroundColor: 'transparent', // Supprime le fond des écrans
-                                      },
-                                  }}
-                              >
-                                  <Stack.Screen name="Home" component={Home}/>
-                                  <Stack.Screen name="Forecast" component={Forecast}/>
-                              </Stack.Navigator>
-                          )  : null}
-                      </SafeAreaView>
-                  </SafeAreaProvider>
-              </ ImageBackground>
+                  <Stack.Screen name="Home" component={Home}/>
+                  <Stack.Screen name="Forecast" component={Forecast}/>
+              </Stack.Navigator>
+          )  : null}
         </NavigationContainer>
       </NavigationIndependentTree>
 
