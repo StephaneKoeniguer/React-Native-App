@@ -10,6 +10,7 @@ export function Home() {
 
     const [coords, setCoords] = useState();
     const [weather, setWeather] = useState();
+    const [city, setCity] = useState();
     const currentWeather = weather ?.current_weather;
 
     useEffect(() => {
@@ -19,6 +20,7 @@ export function Home() {
     useEffect(() => {
         if (coords) {
             fetchWeather(coords);
+            fetchCity(coords);
         }
     }, [coords]);
 
@@ -49,6 +51,17 @@ export function Home() {
 
     }
 
+    /**
+     * Permet de récupérer la ville
+     * @param coordinates
+     * @returns {Promise<void>}
+     */
+    async function fetchCity(coordinates) {
+        // Appel classe meteo.js
+        const cityResponse = await MeteoAPI.fetchCityFromCoords(coordinates);
+        setCity(cityResponse);
+    }
+
 
 
     return currentWeather ? (
@@ -56,7 +69,7 @@ export function Home() {
             <View style={s.meteo_basic} >
                 <MeteoBasic
                     temperature = {Math.round(currentWeather?.temperature)}
-                    city = "Todo"
+                    city = {city}
                     interpretation = {getWeatherInterpretation(currentWeather.weathercode)}
                 />
             </View>

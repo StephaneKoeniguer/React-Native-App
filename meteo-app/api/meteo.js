@@ -8,4 +8,15 @@ export class MeteoAPI {
         )
         ).data
     }
+
+    static async fetchCityFromCoords(coords) {
+        const {address : {city, village}} = (
+            await axios.get(
+                `https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.lat}&lon=${coords.lng}`
+            )
+        ).data
+        return city || village;
+    }
+
 }
+
