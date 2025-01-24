@@ -15,6 +15,9 @@ export const s = StyleSheet.create({
     },
     button: {
        width: 30
+    },
+    forecaslits: {
+        marginTop: 50,
     }
 
 })
