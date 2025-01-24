@@ -3,6 +3,7 @@ import {Txt} from "@/components/Txt/Txt";
 import {Container} from "@/components/Container/Container";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {TouchableOpacity, View} from "react-native";
+import {ForecastListItem} from "@/components/ForecastListItem/ForecastListItem";
 
 export function Forecast({}) {
 
@@ -28,6 +29,34 @@ export function Forecast({}) {
     return (
         <Container>
             {header}
+
+            <View style={{marginTop: 50}}>
+                <ForecastListItem
+                    image={require("@/assets/images/clouds.png")}
+                    day={"LUN"}
+                    date={"01/01/2022"}
+                    temperature={15}
+                />
+                <ForecastListItem
+                    image={require("@/assets/images/clouds.png")}
+                    day={"LUN"}
+                    date={"01/01/2022"}
+                    temperature={15}
+                />
+                <ForecastListItem
+                    image={require("@/assets/images/clouds.png")}
+                    day={"LUN"}
+                    date={"01/01/2022"}
+                    temperature={15}
+                />
+                <ForecastListItem
+                    image={require("@/assets/images/clouds.png")}
+                    day={"LUN"}
+                    date={"01/01/2022"}
+                    temperature={15}
+                />
+            </View>
+
         </Container>
     )
 }
