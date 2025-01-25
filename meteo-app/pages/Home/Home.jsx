@@ -8,6 +8,7 @@ import {getWeatherInterpretation} from "@/services/meteo-service";
 import {MeteoAdvanced} from "@/components/MeteoAdvanced/MeteoAdvanced";
 import {useNavigation} from "@react-navigation/native";
 import {Container} from "@/components/Container/Container";
+import {SearchBar} from "@/components/SearchBar/SearchBar";
 
 export function Home() {
 
@@ -84,7 +85,7 @@ export function Home() {
                 />
             </View>
             <View style={s.searchbar} >
-
+                <SearchBar />
             </View>
             <View style={s.meteo_advanced}>
                 <MeteoAdvanced
