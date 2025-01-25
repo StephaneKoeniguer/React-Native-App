@@ -8,8 +8,8 @@ export const s = StyleSheet.create({
         marginHorizontal: 20
     },
     image: {
-        height: 50,
-        width: 50,
+        height: 40,
+        width: 40,
     },
     day: {
         fontSize: 20,

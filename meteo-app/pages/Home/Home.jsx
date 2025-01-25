@@ -1,5 +1,5 @@
 import { s } from './Home.style';
-import {View} from "react-native";
+import {Alert, View} from "react-native";
 import {requestForegroundPermissionsAsync, getCurrentPositionAsync} from 'expo-location';
 import {useEffect, useState} from "react";
 import {MeteoAPI} from "@/api/meteo";
@@ -68,6 +68,22 @@ export function Home() {
     }
 
     /**
+     *  Récupère les coordonnées par rapport à la ville
+     * @param city
+     * @returns {Promise<void>}
+     */
+    async function fetchCoordsByCity(city) {
+        try {
+            // Appel classe meteo.js
+            const coords = await MeteoAPI.fetchCoordsFromCity(city);
+            setCoords(coords);
+        }catch (e) {
+            Alert.alert("Oups !", e)
+        }
+        
+    }
+
+    /**
      * Permet de récupérer de naviger et d'envoyer les données à la page
      */
     function gotoForecastPage() {
@@ -85,7 +101,7 @@ export function Home() {
                 />
             </View>
             <View style={s.searchbar} >
-                <SearchBar />
+                <SearchBar onSubit={fetchCoordsByCity} />
             </View>
             <View style={s.meteo_advanced}>
                 <MeteoAdvanced

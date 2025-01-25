@@ -14,7 +14,6 @@ export function MeteoBasic({ onPress, temperature, city, interpretation}) {
             <Txt>{city}</Txt>
             <Txt style={s.weather_label}>{interpretation.label}</Txt>
 
-
             <View style={s.temperature_container}>
                 <TouchableOpacity onPress={onPress}>
                     <Txt style={s.temperature}>{temperature}°</Txt>
