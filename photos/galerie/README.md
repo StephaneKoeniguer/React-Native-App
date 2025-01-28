@@ -1,50 +1,49 @@
-# Welcome to your Expo app 👋
+# Application d'accès à la galerie photo 🖼
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Bienvenue dans votre application d'accès à la galerie photo ! Cette application, construite avec [Expo](https://expo.dev), vous permet de naviguer et d’interagir avec des images directement depuis votre appareil.
 
-## Get started
+## Étapes pour commencer
 
-1. Install dependencies
+### 1. Installer les dépendances
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Exécutez la commande suivante pour installer les dépendances nécessaires :
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Lancer l'application
 
-## Learn more
+Démarrez l'application avec la commande suivante :
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+npx expo start
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Vous verrez des options pour ouvrir l'application :
 
-## Join the community
+- [Build de développement](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Emulateur Android](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [Simulateur iOS](https://docs.expo.dev/workflow/ios-simulator/)
 
-Join our community of developers creating universal apps.
+### 3. Fonctionnalités principales
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Accès à la galerie photo de votre appareil
+- Sélection et affichage des images
+- Support pour Android et iOS
+- Interface simple et intuitive
+
+
+### Ajouter des fonctionnalités
+
+Si vous souhaitez ajouter des fonctionnalités, commencez par explorer les composants existants dans **app** et ajoutez des vues ou des écrans supplémentaires en créant de nouveaux fichiers dans ce répertoire.
+
+
+## En savoir plus
+
+Pour en savoir plus sur le développement avec Expo, consultez les ressources suivantes :
+
+- [Documentation Expo](https://docs.expo.dev/) : Apprenez les bases ou explorez des sujets avancés dans les [guides](https://docs.expo.dev/guides).
+- [Tutoriel Expo](https://docs.expo.dev/tutorial/introduction/) : Suivez un tutoriel pas à pas pour créer un projet compatible avec Android, iOS et le web.
+
+Amusez-vous bien à développer votre application d'accès à la galerie photo ! ✨
