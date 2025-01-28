@@ -8,6 +8,9 @@ export default function Index() {
 
     const [ imageList, setImageList] = useState([]);
 
+    /**
+     * Permet d'accéder à la galerie photo
+     */
     async function pickImageAsync() {
        const result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
