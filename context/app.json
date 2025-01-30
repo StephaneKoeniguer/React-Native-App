@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "meteo-app",
-    "slug": "meteo-app",
+    "name": "context",
+    "slug": "context",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -15,8 +15,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "softwareKeyboardLayoutMode": "pan"
+      }
     },
     "web": {
       "bundler": "metro",
@@ -37,21 +36,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "5a22a5ff-770c-4c66-b06e-f43deeae7889"
-      }
-    },
-    "owner": "stephane_k",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/5a22a5ff-770c-4c66-b06e-f43deeae7889"
     }
   }
 }
