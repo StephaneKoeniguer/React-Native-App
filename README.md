@@ -31,6 +31,19 @@ Une application météo pour consulter les prévisions en temps réel.
 
 ---
 
+### 3. **Photo Gallery App** 🖼
+
+Une application d'accès à la galerie photo.
+
+**Fonctionnalités principales :**
+- Accès aux photos de votre appareil.
+- Sélection et affichage des images.
+- Support multiplateforme pour Android et iOS.
+
+[Consultez le README complet](./photo-gallery-app/README.md)
+
+---
+
 ## 🔄 Prérequis
 
 Pour exécuter ces applications, vous aurez besoin de :
@@ -55,6 +68,8 @@ Pour exécuter ces applications, vous aurez besoin de :
    cd todo-list-app
    # ou
    cd weather-app
+   # ou
+   cd photo/galerie
    ```
 
 3. Installez les dépendances :
@@ -83,3 +98,4 @@ Pour exécuter ces applications, vous aurez besoin de :
 - [Documentation de React Native](https://reactnative.dev/docs/getting-started)
 - [Documentation d'Expo](https://docs.expo.dev/)
 - [Router Expo](https://docs.expo.dev/router/introduction/)
+
