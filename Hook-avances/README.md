@@ -1,50 +1,69 @@
-# Welcome to your Expo app 👋
+# Exemple de Navigation entre Champs Input dans React Native
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Ce projet démontre comment implémenter une navigation fluide entre les champs `TextInput` dans une application React Native en utilisant des références et la gestion d'événements.
 
-## Get started
+## Fonctionnalités
 
-1. Install dependencies
+- Transition automatique du focus entre les champs de saisie en fonction de la longueur de l'entrée utilisateur.
+- Utilisation de `useRef` pour gérer les références des champs de saisie.
+- Intégration de `SafeAreaProvider` et `SafeAreaView` pour un rendu adapté sur différents appareils.
 
+## Explication du Code
+
+L'application contient trois champs `TextInput` :
+
+1. **Champ Numéro de Carte** : Le focus passe automatiquement au champ "Code secret" après la saisie de 16 caractères.
+2. **Champ Code Secret** : Le focus passe au champ "Date d'expiration" après la saisie de 3 caractères.
+3. **Champ Date d'Expiration** : Le dernier champ de saisie de la séquence.
+
+### Fonctionnalités Principales
+
+- `useRef` : Utilisé pour créer des références vers les champs de saisie pour gérer le focus de manière programmatique.
+- `onCardNumberChange` et `onCodeChange` : Gestionnaires d'événements qui déterminent quand passer au champ suivant.
+
+### Exemple de Flux de Travail
+1. L'utilisateur saisit 16 caractères dans le champ "Numéro de carte".
+2. Le focus passe automatiquement au champ "Code secret".
+3. Après avoir saisi 3 caractères dans le champ "Code secret", le focus passe au champ "Date d'expiration".
+
+## Installation et Utilisation
+
+1. Clonez le dépôt :
+   ```bash
+   git clone https://github.com/votre-utilisateur/react-native-input-navigation.git
+   ```
+
+2. Accédez au répertoire du projet :
+   ```bash
+   cd react-native-input-navigation
+   ```
+
+3. Installez les dépendances :
    ```bash
    npm install
    ```
 
-2. Start the app
-
+4. Lancez le bundler Metro :
    ```bash
-    npx expo start
+   npm expo start
    ```
 
-In the output, you'll find options to open the app in a
+## Structure des Fichiers
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+react-native-input-navigation/
+├── App.js
+├── index.js
+├── components/
+├── assets/
+└── styles/
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Dépendances
 
-## Learn more
+- **React Native** : Framework pour créer des applications natives en utilisant React.
+- **react-native-safe-area-context** : Assure un rendu adapté dans les zones sécurisées des appareils.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Licence
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Ce projet est sous licence MIT. Consultez le fichier `LICENSE` pour plus de détails.
