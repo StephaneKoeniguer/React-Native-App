@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { BookContext } from "../../contexts/BookContext";
+import { BookContext } from "@/contexts/BookContext";
 
 export function TotalPrice() {
     const { books, currency, setCurrency } = useContext(BookContext);
